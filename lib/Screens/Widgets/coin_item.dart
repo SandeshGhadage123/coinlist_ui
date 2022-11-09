@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
 
-class CoinItem extends StatelessWidget {
-  const CoinItem({Key? key}) : super(key: key);
+class CoinItem extends StatefulWidget {
+  final String coinName;
+  final String symbol;
+  final String priceUsd;
+  final String changePercent24Hr;
+  const CoinItem({super.key, required this.coinName, required this.symbol, required this.priceUsd, required this.changePercent24Hr});
 
+  @override
+  State<CoinItem> createState() => _CoinItemState();
+}
+
+class _CoinItemState extends State<CoinItem> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -23,16 +32,16 @@ class CoinItem extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      'Ethereum',
+                    Text(
+                      widget.coinName,
                       style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                          const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                     ),
                     const SizedBox(
                       height: 10,
                     ),
                     Text(
-                      'ETH',
+                      widget.symbol,
                       style: TextStyle(
                           color: Colors.black.withOpacity(0.5), fontSize: 12),
                     ),
@@ -40,11 +49,11 @@ class CoinItem extends StatelessWidget {
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
-                  children: const [
+                  children: [
                     Text(
-                      '\$21,543',
+                      widget.priceUsd,
                       style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                          const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                     ),
                     SizedBox(
                       height: 10,
@@ -52,7 +61,7 @@ class CoinItem extends StatelessWidget {
                     Align(
                       alignment: Alignment.bottomRight,
                       child: Text(
-                        '+1.56%',
+                        widget.changePercent24Hr,
                         style: TextStyle(
                             color: Colors.green,
                             fontWeight: FontWeight.bold,
