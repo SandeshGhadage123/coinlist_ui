@@ -1,4 +1,7 @@
+import 'package:coinlist_ui/Screens/home_screen.dart';
 import 'package:flutter/material.dart';
+
+import '../exchange_page.dart';
 
 class ButtonRow extends StatelessWidget {
   const ButtonRow({Key? key}) : super(key: key);
@@ -17,14 +20,19 @@ class ButtonRow extends StatelessWidget {
                   border: Border.all(
                       color: Colors.grey.withOpacity(0.1), width: 1)),
               child: FloatingActionButton(
-                backgroundColor: Colors.white,
-                elevation: 0,
-                child: Icon(
-                  Icons.remove_circle_outline,
-                  color: Colors.black.withOpacity(0.7),
-                ),
-                onPressed: () {},
-              ),
+                  backgroundColor: Colors.white,
+                  elevation: 0,
+                  child: Icon(
+                    Icons.remove_circle_outline,
+                    color: Colors.black.withOpacity(0.7),
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const ExchangePage()),
+                    );
+                  }),
             ),
             const SizedBox(
               height: 10,

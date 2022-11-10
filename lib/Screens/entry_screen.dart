@@ -2,18 +2,32 @@ import 'package:flutter/material.dart';
 import 'Widgets/balance_card.dart';
 import 'Widgets/button_row.dart';
 import 'Widgets/coin_item.dart';
+import 'exchange_page.dart';
+import 'home_screen.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class EntryScreen extends StatefulWidget {
+  const EntryScreen({Key? key}) : super(key: key);
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<EntryScreen> createState() => _EntryScreenState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _EntryScreenState extends State<EntryScreen> {
   int _currentIndex = 0;
 
-  final tabs = [];
+  final tabs = [
+    HomePage(),
+    Center(
+      child: Text('Search'),
+    ),
+    Center(
+      child: Text('Wallet'),
+    ),
+    ExchangePage(),
+    Center(
+      child: Text('Profile'),
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -57,49 +71,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(25),
-        scrollDirection: Axis.vertical,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(
-              height: 10,
-            ),
-            const BalanceCard(),
-            const SizedBox(
-              height: 20,
-            ),
-            const ButtonRow(),
-            const SizedBox(
-              height: 40,
-            ),
-            const Text(
-              'Live Prices',
-              style: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            ListView.builder(
-              physics: const NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              itemCount: 10,
-              itemBuilder: (context, currIndex) {
-                return CoinItem(
-                  coinName: "Ethereum",
-                  symbol: "ETH",
-                  priceUsd: "00000",
-                  changePercent24Hr: "+0.5%",
-                );
-              },
-            ),
-          ],
-        ),
-      ),
+      body: tabs[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         elevation: 0,
         selectedItemColor: Colors.black,
