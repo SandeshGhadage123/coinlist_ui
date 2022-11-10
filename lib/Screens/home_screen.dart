@@ -1,6 +1,4 @@
-import 'package:coinlist_ui/models/coin_model.dart';
 import 'package:flutter/material.dart';
-import '../repositories/network_handler.dart';
 import 'Widgets/balance_card.dart';
 import 'Widgets/button_row.dart';
 import 'Widgets/coin_item.dart';
@@ -13,19 +11,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  CoinModel? _coinModel;
-
-  @override
-  void initState() {
-    super.initState();
-    getData();
-  }
-
-  void getData() async {
-    _coinModel = (await NetworkHandler().getDio())!;
-    Future.delayed(const Duration(seconds: 1)).then((value) => setState(() {}));
-  }
-
   int _currentIndex = 0;
 
   @override
@@ -100,13 +85,13 @@ class _HomePageState extends State<HomePage> {
             ListView.builder(
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
-              itemCount: _coinModel?.data?.length ?? 0,
+              itemCount: 10,
               itemBuilder: (context, currIndex) {
                 return CoinItem(
-                  coinName: _coinModel?.data?[currIndex].name ?? "",
-                  symbol: _coinModel?.data?[currIndex].id ?? "",
-                  priceUsd: _coinModel?.data?[currIndex].priceUsd ?? "",
-                  changePercent24Hr: _coinModel?.data?[currIndex].changePercent24Hr ?? "",
+                  coinName: "Ethereum",
+                  symbol: "ETH",
+                  priceUsd: "00000",
+                  changePercent24Hr: "+0.5%",
                 );
               },
             ),
