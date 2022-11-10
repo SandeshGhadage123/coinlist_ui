@@ -20,7 +20,7 @@ class ExchangeFeeCard extends StatelessWidget {
                 'https://s2.coinmarketcap.com/static/img/coins/64x64/1.png'),
           ),
           const SizedBox(
-            width: 20,
+            width: 15,
           ),
           Flexible(
             child: Row(
@@ -35,7 +35,7 @@ class ExchangeFeeCard extends StatelessWidget {
                     ),
                     Text(
                       '0.001%',
-                      style: TextStyle(fontSize: 18),
+                      style: TextStyle(fontSize: 15),
                     ),
                   ],
                 ),

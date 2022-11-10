@@ -24,13 +24,15 @@ class _ExchangePageState extends State<ExchangePage> {
           elevation: 0,
           backgroundColor: Colors.white,
           foregroundColor: Colors.black,
-          title: Text(
+          title: const Text(
             'Exchange',
             style: TextStyle(
               fontWeight: FontWeight.bold,
             ),
           ),
-          actions: [IconButton(onPressed: () {}, icon: Icon(Icons.history))],
+          actions: [
+            IconButton(onPressed: () {}, icon: const Icon(Icons.history))
+          ],
         ),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -49,34 +51,34 @@ class _ExchangePageState extends State<ExchangePage> {
                       fontSize: 16.0,
                       cornerRadius: 25,
                       initialLabelIndex: 1,
-                      activeBgColor: [Colors.white],
+                      activeBgColor: const [Colors.white],
                       activeFgColor: Colors.blue,
                       inactiveBgColor: Colors.grey[300],
                       inactiveFgColor: Colors.grey[600],
                       totalSwitches: 2,
-                      labels: ['Sell', 'Buy'],
+                      labels: const ['Sell', 'Buy'],
                       //customTextStyles: [TextStyle(fontWeight: FontWeight.bold)],
                       onToggle: (index) {
-                        print('switched to: $index');
+                        //print('switched to: $index');
                       },
                     ),
                   ),
                   const SizedBox(
-                    height: 20,
+                    height: 5,
                   ),
-                  WalletCard(),
+                  const WalletCard(),
                   const SizedBox(
                     height: 20,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
+                      const Text(
                         'Pay',
                         style: TextStyle(fontSize: 15),
                       ),
                       Row(
-                        children: [
+                        children: const [
                           Icon(
                             Icons.currency_exchange,
                             color: Colors.green,
@@ -93,18 +95,18 @@ class _ExchangePageState extends State<ExchangePage> {
                       ),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
                   Container(
                       alignment: Alignment.centerLeft,
-                      child: Text(
+                      child: const Text(
                         '\$ 12,350',
                         style: TextStyle(
                             fontSize: 25, fontWeight: FontWeight.bold),
                       )),
-                  SizedBox(
-                    height: 20,
+                  const SizedBox(
+                    height: 10,
                   ),
                   Slider(
                     value: _currentSliderValue,
@@ -117,13 +119,13 @@ class _ExchangePageState extends State<ExchangePage> {
                       });
                     },
                   ),
-                  SizedBox(
-                    height: 20,
+                  const SizedBox(
+                    height: 10,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
+                      const Text(
                         'Receive',
                         style: TextStyle(fontSize: 15),
                       ),
@@ -139,10 +141,10 @@ class _ExchangePageState extends State<ExchangePage> {
                           //   Icons.currency_exchange,
                           //   color: Colors.green,
                           // ),
-                          SizedBox(
+                          const SizedBox(
                             width: 10,
                           ),
-                          Text(
+                          const Text(
                             'Ethereum',
                             style: TextStyle(
                                 fontSize: 18, fontWeight: FontWeight.bold),
@@ -152,7 +154,7 @@ class _ExchangePageState extends State<ExchangePage> {
                     ],
                   ),
                   Row(
-                    children: [
+                    children: const [
                       Icon(
                         Icons.menu_outlined,
                         size: 35,
@@ -166,13 +168,13 @@ class _ExchangePageState extends State<ExchangePage> {
                       )
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
-                  ExchangeFeeCard(),
-                  SizedBox(
-                    height: 10,
-                  ),
+                  const ExchangeFeeCard(),
+                  // SizedBox(
+                  //   height: 10,
+                  // ),
                   Row(
                     children: [
                       Checkbox(
@@ -183,8 +185,8 @@ class _ExchangePageState extends State<ExchangePage> {
                           });
                         },
                       ),
-                      Text('I have read accept the '),
-                      Text(
+                      const Text('I have read accept the '),
+                      const Text(
                         'Terms and Conditions',
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
@@ -199,10 +201,6 @@ class _ExchangePageState extends State<ExchangePage> {
                   Padding(
                     padding: const EdgeInsets.only(bottom: 20),
                     child: MaterialButton(
-                        child: Text(
-                          'Continue',
-                          style: TextStyle(fontSize: 20),
-                        ),
                         color: Colors.black87,
                         height: 50,
                         minWidth: double.infinity,
@@ -210,7 +208,11 @@ class _ExchangePageState extends State<ExchangePage> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        onPressed: () {}),
+                        onPressed: () {},
+                        child: const Text(
+                          'Continue',
+                          style: TextStyle(fontSize: 20),
+                        )),
                   ),
                 ],
               ))

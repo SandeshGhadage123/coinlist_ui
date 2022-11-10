@@ -1,4 +1,4 @@
-import 'package:coinlist_ui/Screens/home_screen.dart';
+import 'package:coinlist_ui/Screens/my_wallet.dart';
 import 'package:flutter/material.dart';
 
 import '../exchange_page.dart';
@@ -27,11 +27,11 @@ class ButtonRow extends StatelessWidget {
                     color: Colors.black.withOpacity(0.7),
                   ),
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const ExchangePage()),
-                    );
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //       builder: (context) => const ExchangePage()),
+                    // );
                   }),
             ),
             const SizedBox(

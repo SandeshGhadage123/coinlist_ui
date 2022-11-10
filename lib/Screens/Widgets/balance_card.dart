@@ -35,16 +35,29 @@ class _BalanceCardState extends State<BalanceCard> {
                 SizedBox(
                   width: 10,
                 ),
-                Text(
-                  'USD',
-                  style: TextStyle(
-                      color: Colors.grey, fontWeight: FontWeight.bold),
+                // Text(
+                //   'USD',
+                //   style: TextStyle(
+                //       color: Colors.grey, fontWeight: FontWeight.bold),
+                // ),
+                Flexible(
+                  child: ExpansionTile(
+                    controlAffinity: ListTileControlAffinity.trailing,
+                    title: Text(
+                      'USD',
+                      style: TextStyle(
+                          color: Colors.grey, fontWeight: FontWeight.bold),
+                    ),
+                    // children: [
+                    //   ListTile(title: Text('This is tile number 1')),
+                    // ],
+                  ),
                 ),
               ],
             ),
-            const SizedBox(
-              height: 20,
-            ),
+            // const SizedBox(
+            //   height: 20,
+            // ),
             const Text(
               '\$ 240,090',
               style: TextStyle(

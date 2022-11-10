@@ -1,19 +1,31 @@
+import 'package:coinlist_ui/models/coin_model.dart';
+import 'package:coinlist_ui/repositories/network_handler.dart';
 import 'package:flutter/material.dart';
 import 'Widgets/balance_card.dart';
 import 'Widgets/button_row.dart';
 import 'Widgets/coin_item.dart';
+import 'package:intl/intl.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class MyWallet extends StatefulWidget {
+  const MyWallet({Key? key}) : super(key: key);
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<MyWallet> createState() => _MyWalletState();
 }
 
-class _HomePageState extends State<HomePage> {
-  int _currentIndex = 0;
+class _MyWalletState extends State<MyWallet> {
+  CoinModel? coinModel;
 
-  final tabs = [];
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
+
+  void getData() async {
+    coinModel = (await NetworkHandler().getDio())!;
+    Future.delayed(const Duration(seconds: 1)).then((value) => setState(() {}));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,9 +47,7 @@ class _HomePageState extends State<HomePage> {
               Icons.qr_code_scanner_outlined,
               color: Colors.black,
             ),
-            onPressed: () {
-              // do something
-            },
+            onPressed: () {},
           ),
           const VerticalDivider(
             width: 5,
@@ -87,43 +97,23 @@ class _HomePageState extends State<HomePage> {
             ListView.builder(
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
-              itemCount: 10,
+              itemCount: coinModel?.data?.length ?? 0,
               itemBuilder: (context, currIndex) {
                 return CoinItem(
-                  coinName: "Ethereum",
-                  symbol: "ETH",
-                  priceUsd: "00000",
-                  changePercent24Hr: "+0.5%",
+                  coinName: coinModel?.data?[currIndex].name ?? "0",
+                  symbol: coinModel?.data?[currIndex].symbol ?? "0",
+                  priceUsd: NumberFormat.compactSimpleCurrency(locale: 'en-US')
+                      .format(double.parse(
+                          coinModel?.data?[currIndex].marketCapUsd ?? '0')),
+                  changePercent24Hr: coinModel
+                          ?.data?[currIndex].changePercent24Hr
+                          ?.substring(0, 5) ??
+                      "0",
                 );
               },
             ),
           ],
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        elevation: 0,
-        selectedItemColor: Colors.black,
-        unselectedItemColor: Colors.grey,
-        backgroundColor: Colors.white,
-        currentIndex: _currentIndex,
-        showSelectedLabels: false,
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'search'),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.account_balance_wallet_outlined),
-            label: 'wallet',
-          ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.payment_rounded), label: 'payment'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.person_outline_outlined), label: 'person'),
-        ],
-        onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
-        },
       ),
     );
   }

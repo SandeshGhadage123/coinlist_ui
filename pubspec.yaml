@@ -39,6 +39,7 @@ dependencies:
   dio: ^4.0.6
   lite_rolling_switch: ^1.0.0
   toggle_switch: ^2.0.1
+  intl:
 
 dev_dependencies:
   flutter_test:

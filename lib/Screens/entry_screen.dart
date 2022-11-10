@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'Widgets/balance_card.dart';
-import 'Widgets/button_row.dart';
-import 'Widgets/coin_item.dart';
 import 'exchange_page.dart';
-import 'home_screen.dart';
+import 'my_wallet.dart';
 
 class EntryScreen extends StatefulWidget {
   const EntryScreen({Key? key}) : super(key: key);
@@ -16,13 +13,13 @@ class _EntryScreenState extends State<EntryScreen> {
   int _currentIndex = 0;
 
   final tabs = [
-    HomePage(),
+    Center(
+      child: Text('Home'),
+    ),
     Center(
       child: Text('Search'),
     ),
-    Center(
-      child: Text('Wallet'),
-    ),
+    MyWallet(),
     ExchangePage(),
     Center(
       child: Text('Profile'),
@@ -33,44 +30,6 @@ class _EntryScreenState extends State<EntryScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: const Text(
-          'My Wallet',
-          style: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        backgroundColor: Colors.white,
-        elevation: 0,
-        actions: [
-          IconButton(
-            icon: const Icon(
-              Icons.qr_code_scanner_outlined,
-              color: Colors.black,
-            ),
-            onPressed: () {
-              // do something
-            },
-          ),
-          const VerticalDivider(
-            width: 5,
-            thickness: 1,
-            indent: 15,
-            endIndent: 10,
-            color: Colors.grey,
-          ),
-          IconButton(
-            icon: const Icon(
-              Icons.notifications_outlined,
-              color: Colors.black,
-            ),
-            onPressed: () {
-              // do something
-            },
-          ),
-        ],
-      ),
       body: tabs[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         elevation: 0,
